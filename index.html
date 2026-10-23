@@ -2,259 +2,771 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arunkumar R | Portfolio</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080a09">
+<meta name="description" content="Arunkumar R — aspiring software developer, creative problem solver, and technology enthusiast.">
+<title>AR® — The Digital Playground</title>
 
-        html {
-            scroll-behavior: smooth;
-        }
+<style>
+:root {
+  --bg: #080a09;
+  --panel: #111511;
+  --panel2: #171c17;
+  --text: #f3f5ef;
+  --muted: #929b90;
+  --lime: #caff59;
+  --line: rgba(220,240,210,.13);
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; scroll-padding-top:85px; }
+body {
+  background:var(--bg); color:var(--text);
+  font-family:Inter, "Segoe UI", Arial, sans-serif;
+  line-height:1.6; overflow-x:hidden;
+}
+body::after {
+  content:""; position:fixed; inset:0; z-index:20;
+  pointer-events:none; opacity:.12;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; }
+::selection { color:#080a09; background:var(--lime); }
+.container { width:min(1160px,calc(100% - 44px)); margin:auto; }
+.mono { font-family:var(--mono); }
+.muted { color:var(--muted); }
+.lime { color:var(--lime); }
+section { position:relative; }
+#particles {
+  position:fixed; inset:0; width:100%; height:100%;
+  pointer-events:none; z-index:-1;
+}
+.progress {
+  position:fixed; top:0; left:0; z-index:100;
+  width:0%; height:3px; background:var(--lime);
+  box-shadow:0 0 14px #caff59aa;
+}
+.cursor-dot,.cursor-ring {
+  position:fixed; top:0; left:0; z-index:110;
+  pointer-events:none; border-radius:50%; opacity:0;
+}
+.cursor-dot { width:6px;height:6px;background:var(--lime); }
+.cursor-ring {
+  width:34px;height:34px;border:1px solid #caff5999;
+  transition:width .2s,height .2s,border-color .2s;
+}
+body.cursor-ready .cursor-dot,body.cursor-ready .cursor-ring { opacity:1; }
+.cursor-ring.hovering { width:54px;height:54px;border-color:var(--lime); }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fc;
-            color: #1e293b;
-            line-height: 1.6;
-        }
+/* NAV */
+header {
+  position:sticky; top:0; z-index:80;
+  background:#080a09d9; backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.nav { height:74px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.logo { display:flex; align-items:center; gap:11px; font-weight:900; letter-spacing:-.05em; }
+.logo-icon {
+  width:39px;height:39px;display:grid;place-items:center;
+  background:var(--lime);color:#080a09;border-radius:12px;
+  transform:rotate(-5deg);font-size:.85rem;
+}
+.logo small { display:block; font:10px var(--mono); color:var(--muted); letter-spacing:.1em; }
+.links { display:flex;align-items:center;gap:29px; }
+.links a { color:#b5bdb2;font-size:.82rem;transition:color .2s; }
+.links a:hover { color:var(--lime); }
+.links .contact-link { border:1px solid var(--line);padding:10px 15px;border-radius:8px;color:var(--text); }
+.menu {
+  display:none; width:42px;height:42px;border:1px solid var(--line);
+  background:var(--panel);color:var(--text);border-radius:10px;cursor:pointer;
+}
 
-        header {
-            background: #111827;
-            color: white;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
+/* HERO */
+.hero { min-height:calc(100svh - 74px);display:flex;align-items:center;padding:70px 0 58px; }
+.hero-grid { display:grid;grid-template-columns:1.06fr .94fr;align-items:center;gap:32px; }
+.kicker {
+  display:flex;align-items:center;gap:10px;
+  color:var(--lime);font:11px var(--mono);letter-spacing:.13em;text-transform:uppercase;
+}
+.pulse {
+  width:8px;height:8px;background:var(--lime);border-radius:50%;
+  box-shadow:0 0 0 0 #caff5970;animation:pulse 2s infinite;
+}
+@keyframes pulse { 70%{box-shadow:0 0 0 9px #caff5900}100%{box-shadow:0 0 0 0 #caff5900} }
+.hero h1 {
+  margin:25px 0 22px;font-size:clamp(3.6rem,8.5vw,7.6rem);
+  font-weight:900;letter-spacing:-.095em;line-height:.87;
+}
+.hero h1 .outline {
+  color:transparent;-webkit-text-stroke:1px #e9f2e3;
+}
+.hero h1 .animated-word { color:var(--lime);display:inline-block;min-width:3ch; }
+.type-caret { display:inline-block;width:3px;height:.75em;background:var(--lime);margin-left:5px;animation:blink .8s steps(2) infinite; }
+@keyframes blink { 50%{opacity:0} }
+.hero-desc { max-width:500px;color:#a9b1a7;font-size:1rem; }
+.actions { display:flex;flex-wrap:wrap;gap:12px;margin-top:29px; }
+.btn {
+  min-height:48px;padding:12px 18px;border-radius:9px;
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  border:1px solid var(--line);font-size:.82rem;font-weight:800;
+  transition:transform .25s,background .25s,border-color .25s;
+}
+.btn:hover { transform:translateY(-4px); }
+.btn-primary { background:var(--lime);color:#0b0d08;border-color:var(--lime); }
+.btn-primary:hover { background:#dcff98; }
+.btn-ghost:hover { border-color:var(--lime); }
+.btn .arrow { transition:transform .2s; }
+.btn:hover .arrow { transform:translate(3px,-2px); }
+.hero-meta { margin-top:32px;display:flex;align-items:center;gap:12px;color:#8b9488;font:10px var(--mono);letter-spacing:.08em; }
+.hero-meta i { display:block;width:27px;height:1px;background:var(--lime); }
+.hero-meta span { color:#d8e0d3; }
 
-        header h2 {
-            color: #93c5fd;
-        }
+/* HERO ART */
+.art { min-height:490px;position:relative;display:grid;place-items:center;perspective:1000px; }
+.art-glow {
+  position:absolute;width:380px;max-width:90%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,#b4ed4730,transparent 68%);filter:blur(12px);
+  animation:glow 5s ease-in-out infinite alternate;
+}
+@keyframes glow { to{transform:scale(1.18);opacity:.55} }
+.orbit {
+  position:absolute;width:370px;max-width:92%;aspect-ratio:1;
+  border:1px solid #caff5930;border-radius:50%;
+  animation:spin 24s linear infinite;
+}
+.orbit::before {
+  content:"";position:absolute;top:10%;left:17%;
+  width:9px;height:9px;border-radius:50%;background:var(--lime);
+  box-shadow:0 0 20px var(--lime);
+}
+.orbit.o2 { width:290px;border-color:#e5f3dc23;animation-direction:reverse;animation-duration:19s; }
+.orbit.o3 { width:210px;border-style:dashed;border-color:#caff5925;animation-duration:35s; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.core {
+  position:relative;width:205px;height:245px;display:grid;place-items:center;
+  border:1px solid #caff5960;border-radius:110px 110px 32px 32px;
+  background:linear-gradient(145deg,#29351f,#101410 70%);
+  box-shadow:0 25px 80px #0008,inset 0 1px #ffffff20;
+  transform-style:preserve-3d;transition:transform .15s;
+  overflow:hidden;
+}
+.core::before {
+  content:"";position:absolute;inset:-40%;
+  background:conic-gradient(from 0deg,transparent,#caff5915,transparent 35%);
+  animation:spin 8s linear infinite;
+}
+.core::after {
+  content:"";position:absolute;inset:13px;border:1px solid #caff5920;
+  border-radius:100px 100px 25px 25px;
+}
+.core-text { position:relative;z-index:1;font-size:4.4rem;font-weight:950;letter-spacing:-.12em;color:var(--lime);padding-right:10px;text-shadow:0 0 45px #caff592b; }
+.core-caption { position:absolute;z-index:2;bottom:23px;font:9px var(--mono);letter-spacing:.2em;color:#d2e7bd; }
+.float {
+  position:absolute;z-index:3;background:#111611ed;border:1px solid var(--line);
+  padding:12px 14px;border-radius:11px;box-shadow:0 12px 40px #0005;
+  backdrop-filter:blur(10px);animation:float 5s ease-in-out infinite;
+}
+.float strong { display:block;font-size:.76rem; }
+.float small { display:block;color:var(--muted);font:10px var(--mono); }
+.float .sym { color:var(--lime);font:17px var(--mono);margin-right:9px; }
+.float-inner { display:flex;align-items:center; }
+.f1 { top:13%;right:0; }
+.f2 { bottom:12%;left:0;animation-delay:-2.5s; }
+@keyframes float { 50%{transform:translateY(-10px)} }
+.art-label { position:absolute;bottom:2%;right:2%;font:9px var(--mono);color:#778170;letter-spacing:.12em; }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 18px;
-            font-size: 14px;
-        }
+/* MOVING STRIP */
+.ticker { overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#0c0f0c; }
+.ticker-track { display:flex;width:max-content;animation:marquee 28s linear infinite; }
+.ticker-group { display:flex;align-items:center;gap:27px;padding:18px 14px;white-space:nowrap;font:11px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:#a3ad9e; }
+.ticker-group b { color:var(--lime);font-size:17px; }
+@keyframes marquee { to{transform:translateX(-50%)} }
 
-        nav a:hover {
-            color: #93c5fd;
-        }
+/* SECTION FRAME */
+.section { padding:105px 0;border-bottom:1px solid var(--line); }
+.section-top { display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:42px; }
+.section-id { color:var(--lime);font:11px var(--mono);letter-spacing:.14em;text-transform:uppercase; }
+.section h2 { margin-top:12px;font-size:clamp(2.5rem,5.5vw,4.8rem);letter-spacing:-.075em;line-height:1; }
+.section-top>p { max-width:390px;color:var(--muted);font-size:.89rem; }
+.reveal { opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease; }
+.reveal.show { opacity:1;transform:translateY(0); }
 
-        .hero {
-            background: linear-gradient(135deg, #172554, #2563eb);
-            color: white;
-            text-align: center;
-            padding: 90px 20px;
-        }
+/* ABOUT */
+.about-grid { display:grid;grid-template-columns:.8fr 1.2fr;gap:65px; }
+.about-aside { padding:25px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#141a12,#0c0f0c); }
+.aside-mark { font-size:3.3rem;color:var(--lime);letter-spacing:-.1em;font-weight:950;line-height:1; }
+.aside-rule { height:1px;background:var(--line);margin:25px 0; }
+.aside-line { display:flex;justify-content:space-between;gap:12px;margin:12px 0;font:11px var(--mono); }
+.aside-line span:first-child { color:var(--muted); }
+.aside-line span:last-child { color:#dce6d5;text-align:right; }
+.about-copy h3 { font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.17;letter-spacing:-.055em;margin-bottom:22px; }
+.about-copy p { color:#aab3a7;margin-bottom:16px;font-size:.96rem; }
+.about-copy strong { color:var(--text); }
+.values { display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:26px; }
+.value { padding:16px 13px;border:1px solid var(--line);border-radius:10px;background:#ffffff03; }
+.value b { display:block;color:var(--lime);font:11px var(--mono);margin-bottom:9px; }
+.value strong { display:block;font-size:.82rem; }
+.value small { display:block;color:var(--muted);font-size:.72rem;margin-top:5px; }
 
-        .hero .tag {
-            color: #bfdbfe;
-            margin-bottom: 12px;
-        }
+/* SKILLS */
+.skill-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:13px; }
+.skill {
+  min-height:210px;position:relative;overflow:hidden;padding:22px;
+  background:linear-gradient(145deg,#151a14,#0d100d);
+  border:1px solid var(--line);border-radius:16px;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+  transform-style:preserve-3d;
+}
+.skill:hover { border-color:#caff5960;box-shadow:0 18px 45px #0004; }
+.skill-num { color:#778173;font:10px var(--mono); }
+.skill-logo { height:65px;display:flex;align-items:center;font:900 2.3rem var(--mono);letter-spacing:-.1em;color:var(--lime); }
+.skill h3 { font-size:1.04rem; }
+.skill p { color:var(--muted);font-size:.77rem;margin-top:7px; }
+.skill::after { content:"↗";position:absolute;right:19px;top:17px;color:#5d6b54;transition:transform .2s,color .2s; }
+.skill:hover::after { color:var(--lime);transform:translate(3px,-3px); }
+.skill-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:24px; }
+.tag { padding:7px 11px;border:1px solid var(--line);border-radius:6px;color:#a9b3a4;font:10px var(--mono); }
 
-        .hero h1 {
-            font-size: clamp(34px, 6vw, 54px);
-            margin-bottom: 12px;
-        }
+/* TERMINAL */
+.terminal {
+  margin-top:34px;border:1px solid var(--line);border-radius:15px;
+  overflow:hidden;background:#0c0f0c;box-shadow:0 20px 70px #0003;
+}
+.terminal-head { display:flex;align-items:center;gap:7px;padding:13px 16px;background:#151915;border-bottom:1px solid var(--line); }
+.terminal-head i { width:8px;height:8px;border-radius:50%;background:#596153; }
+.terminal-head i:first-child { background:#ff766d; }
+.terminal-head i:nth-child(2) { background:#f2c45c; }
+.terminal-head i:nth-child(3) { background:#9bdb69; }
+.terminal-title { margin-left:9px;color:#879181;font:10px var(--mono); }
+.terminal-body { padding:22px;min-height:135px;font:12px/2 var(--mono);color:#b3bfb0; }
+.terminal-body .prompt { color:var(--lime); }
+.terminal-body .answer { color:#dbe5d5; }
+.terminal-body .caret { display:inline-block;width:7px;height:14px;background:var(--lime);vertical-align:middle;animation:blink 1s steps(2) infinite; }
 
-        .hero p {
-            max-width: 600px;
-            margin: 0 auto 25px;
-        }
+/* PROJECT */
+.project { display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden;background:#111511; }
+.project-art {
+  min-height:390px;position:relative;display:grid;place-items:center;padding:30px;
+  background:radial-gradient(ellipse at center,#caff5914,transparent 62%),#101610;
+  overflow:hidden;
+}
+.project-art::before {
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(#caff5911 1px,transparent 1px),linear-gradient(90deg,#caff5911 1px,transparent 1px);
+  background-size:27px 27px;mask-image:radial-gradient(ellipse,black,transparent 75%);
+}
+.face-ui { position:relative;z-index:1;width:min(100%,330px);padding:15px;border:1px solid #caff5945;border-radius:13px;background:#080d09ee;box-shadow:0 20px 70px #0007; }
+.face-ui-head { display:flex;justify-content:space-between;color:#8f9b89;font:9px var(--mono);letter-spacing:.08em; }
+.face-ui-head span:last-child { color:var(--lime); }
+.face-scan { width:125px;height:145px;margin:20px auto;position:relative;border:1px solid #caff593b;border-radius:48% 48% 43% 43%; }
+.face-scan::before { content:"";position:absolute;inset:9px;border:1px dashed #caff593a;border-radius:inherit; }
+.face-outline { position:absolute;left:35px;top:20px;width:53px;height:68px;border:2px solid var(--lime);border-radius:46%; }
+.face-outline::before,.face-outline::after { content:"";position:absolute;top:26px;width:5px;height:5px;background:var(--lime);border-radius:50%; }
+.face-outline::before { left:10px; }.face-outline::after { right:10px; }
+.scan-beam { position:absolute;left:5%;right:5%;height:1px;top:8%;background:var(--lime);box-shadow:0 0 12px var(--lime);animation:scan 3s ease-in-out infinite alternate; }
+@keyframes scan { to{top:90%} }
+.face-foot { display:flex;justify-content:space-between;color:#899586;font:9px var(--mono); }
+.face-foot b { color:var(--lime); }
+.project-copy { padding:clamp(27px,4.5vw,53px);display:flex;flex-direction:column;justify-content:center; }
+.project-overline { display:flex;justify-content:space-between;color:var(--lime);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase; }
+.project-copy h3 { font-size:clamp(1.8rem,3.5vw,3rem);line-height:1.03;letter-spacing:-.065em;margin:22px 0 17px; }
+.project-copy>p { color:#a8b1a4;font-size:.88rem; }
+.project-facts { display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:25px;padding-top:22px;border-top:1px solid var(--line); }
+.project-facts small { display:block;color:#778272;font:9px var(--mono);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px; }
+.project-facts strong { font-size:.78rem; }
+.project-copy .skill-tags { margin-top:20px; }
+.project-note { color:#778272;font-size:.72rem;margin-top:16px; }
 
-        .button {
-            display: inline-block;
-            background: white;
-            color: #1d4ed8;
-            padding: 12px 22px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 5px;
-        }
+/* PROCESS */
+.steps { display:grid;grid-template-columns:repeat(3,1fr);gap:13px;counter-reset:step; }
+.step { counter-increment:step;padding:25px;border:1px solid var(--line);border-radius:14px;background:#ffffff02;transition:background .2s,border-color .2s; }
+.step:hover { background:#caff5907;border-color:#caff5944; }
+.step-number { display:flex;justify-content:space-between;color:var(--lime);font:11px var(--mono);margin-bottom:28px; }
+.step-number::after { content:"0" counter(step);color:#6d7867; }
+.step h3 { font-size:1rem;margin-bottom:10px; }
+.step p { color:var(--muted);font-size:.83rem; }
 
-        .button:hover {
-            background: #dbeafe;
-        }
+/* CONTACT */
+.contact-panel {
+  position:relative;overflow:hidden;padding:clamp(32px,7vw,78px);
+  border:1px solid #caff5945;border-radius:21px;
+  background:radial-gradient(ellipse at 90% 10%,#caff5918,transparent 48%),#111610;
+}
+.contact-panel h2 { max-width:760px;font-size:clamp(2.7rem,7vw,6rem);line-height:.95;letter-spacing:-.08em;margin:22px 0; }
+.contact-panel>p { max-width:520px;color:#aab4a5; }
+.contact-panel .btn { margin-top:28px; }
+.contact-decoration { position:absolute;right:-110px;bottom:-180px;width:400px;height:400px;border:1px solid #caff5927;border-radius:50%;pointer-events:none; }
+.contact-decoration::before,.contact-decoration::after { content:"";position:absolute;inset:30px;border:1px solid #caff591c;border-radius:50%; }
+.contact-decoration::after { inset:65px; }
+.contact-small { display:block;margin-top:16px;color:#778272;font:10px var(--mono); }
 
-        section {
-            max-width: 950px;
-            margin: auto;
-            padding: 65px 22px;
-        }
+/* FOOTER */
+footer { padding:25px 0; }
+.footer-inner { display:flex;justify-content:space-between;gap:18px;align-items:center; }
+.footer-brand { font-weight:900;letter-spacing:-.04em; }
+.footer-brand span { color:var(--lime); }
+.footer-note { color:#788273;font:10px var(--mono); }
+.back-top { color:var(--lime);font:11px var(--mono); }
 
-        section h2 {
-            font-size: 30px;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .about {
-            text-align: center;
-            max-width: 720px;
-        }
-
-        .about p {
-            color: #475569;
-        }
-
-        .skills {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .skill {
-            background: white;
-            border: 1px solid #dbeafe;
-            padding: 14px 24px;
-            border-radius: 10px;
-            font-weight: bold;
-            box-shadow: 0 4px 12px #0f172a0a;
-        }
-
-        .project-card {
-            background: white;
-            max-width: 650px;
-            margin: auto;
-            padding: 28px;
-            border-radius: 14px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 8px 24px #0f172a0a;
-        }
-
-        .project-card h3 {
-            color: #1d4ed8;
-            margin-bottom: 10px;
-        }
-
-        .project-card p {
-            color: #475569;
-            margin-bottom: 16px;
-        }
-
-        .project-card .tech {
-            font-size: 14px;
-            color: #64748b;
-        }
-
-        .contact {
-            text-align: center;
-            background: #eaf1ff;
-            max-width: 100%;
-        }
-
-        .contact p {
-            margin-bottom: 18px;
-        }
-
-        footer {
-            background: #111827;
-            color: #cbd5e1;
-            text-align: center;
-            padding: 22px;
-            font-size: 14px;
-        }
-
-        @media (max-width: 600px) {
-            header {
-                justify-content: center;
-                text-align: center;
-            }
-
-            nav a {
-                margin: 0 7px;
-            }
-
-            .hero {
-                padding: 65px 18px;
-            }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .hero-grid { grid-template-columns:1fr; }
+  .hero { padding-top:75px; }
+  .art { min-height:420px; }
+  .about-grid { grid-template-columns:1fr;gap:25px; }
+  .skill-grid { grid-template-columns:repeat(2,1fr); }
+  .project { grid-template-columns:1fr; }
+  .project-art { min-height:320px; }
+}
+@media(max-width:640px) {
+  .container { width:calc(100% - 32px); }
+  .nav { height:67px; }
+  .menu { display:block; }
+  .links {
+    display:none;position:absolute;top:67px;left:0;right:0;
+    background:#0b0e0b;padding:15px 22px 22px;
+    border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0;
+  }
+  .links.open { display:flex; }
+  .links a { padding:12px 3px; }
+  .links .contact-link { text-align:center;margin-top:8px; }
+  .hero { padding:65px 0 40px; }
+  .hero h1 { font-size:clamp(3.5rem,15vw,5.4rem); }
+  .hero-desc { font-size:.92rem; }
+  .actions .btn { flex:1; }
+  .art { min-height:350px; }
+  .orbit { width:290px; }.orbit.o2 { width:235px; }.orbit.o3 { width:175px; }
+  .core { width:160px;height:200px; }.core-text { font-size:3.5rem; }
+  .float { padding:10px; }.f1 { right:0;top:7%; }.f2 { left:0;bottom:7%; }
+  .section { padding:75px 0; }
+  .section-top { display:block;margin-bottom:30px; }
+  .section-top>p { margin-top:15px; }
+  .values { grid-template-columns:1fr; }
+  .skill-grid { gap:9px; }
+  .skill { min-height:185px;padding:16px; }
+  .skill-logo { font-size:1.9rem;height:57px; }
+  .project-art { min-height:290px;padding:18px; }
+  .project-copy { padding:25px 20px; }
+  .steps { grid-template-columns:1fr; }
+  .step-number { margin-bottom:16px; }
+  .contact-panel { padding:31px 23px; }
+  .contact-decoration { right:-240px; }
+  .footer-inner { align-items:flex-start;flex-direction:column; }
+}
+@media(hover:none),(pointer:coarse) {
+  .cursor-dot,.cursor-ring { display:none!important; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important; }
+  .reveal { opacity:1;transform:none; }
+}
+</style>
 </head>
+
 <body>
+<div class="progress" id="progress"></div>
+<canvas id="particles" aria-hidden="true"></canvas>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <header>
-        <h2>Arunkumar R</h2>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home" aria-label="AR home">
+      <span class="logo-icon">AR.</span>
+      <span>AR® <small>DIGITAL PLAYGROUND</small></span>
+    </a>
+    <button class="menu" id="menu" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="links" id="links">
+      <a href="#about">About</a>
+      <a href="#skills">Toolkit</a>
+      <a href="#projects">Projects</a>
+      <a href="#process">Mindset</a>
+      <a class="contact-link" href="#contact">Let's connect ↗</a>
+    </nav>
+  </div>
+</header>
 
-    <main>
-        <div class="hero">
-            <p class="tag">WELCOME TO MY PORTFOLIO</p>
-            <h1>Hi, I'm Arunkumar R</h1>
-            <p>
-                An aspiring software developer who enjoys learning
-                programming and building useful technology projects.
-            </p>
-            <a class="button" href="#projects">View My Project</a>
-            <a class="button" href="#about">More About Me</a>
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <div class="kicker"><span class="pulse"></span> Portfolio / 2026 — Now building</div>
+        <h1>
+          THINK.<br>
+          <span class="outline">MAKE.</span><br>
+          <span class="animated-word" id="typed">CREATE</span><span class="type-caret"></span>
+        </h1>
+        <p class="hero-desc">
+          Hey, I'm <strong>Arunkumar R</strong> — an aspiring software developer
+          exploring the space between code, creativity, and useful ideas.
+          I learn by building, experiment by curiosity, and improve one project at a time.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">Explore my work <span class="arrow">↗</span></a>
+          <a class="btn btn-ghost" href="#about">Discover my story <span class="arrow">↓</span></a>
         </div>
+        <div class="hero-meta"><i></i> CURRENT MODE: <span>CURIOUS BY DEFAULT</span></div>
+      </div>
 
-        <section id="about" class="about">
-            <h2>About Me</h2>
-            <p>
-                Hello! I'm Arunkumar R, an aspiring software developer
-                interested in programming, web development, and
-                problem-solving. I'm continuously improving my skills
-                and exploring how technology can solve real-world problems.
-            </p>
-        </section>
+      <div class="art reveal" id="art">
+        <div class="art-glow"></div>
+        <div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div>
+        <div class="core" id="core">
+          <span class="core-text">AR.</span>
+          <span class="core-caption">IDEAS → REALITY</span>
+        </div>
+        <div class="float f1">
+          <div class="float-inner"><span class="sym">&lt;/&gt;</span><span><strong>Code with intent</strong><small>LOGIC + CREATIVITY</small></span></div>
+        </div>
+        <div class="float f2">
+          <div class="float-inner"><span class="sym">✳</span><span><strong>Always evolving</strong><small>LEARN / BUILD / REPEAT</small></span></div>
+        </div>
+        <span class="art-label">FIG. 001 — A WORK IN PROGRESS</span>
+      </div>
+    </div>
+  </section>
 
-        <section id="skills">
-            <h2>My Skills</h2>
-            <div class="skills">
-                <div class="skill">Python</div>
-                <div class="skill">Java</div>
-                <div class="skill">HTML</div>
-                <div class="skill">CSS</div>
-            </div>
-        </section>
+  <div class="ticker" aria-label="Areas of interest">
+    <div class="ticker-track">
+      <div class="ticker-group">
+        <span>Python</span><b>✳</b><span>Java</span><b>✳</b><span>Web development</span><b>✳</b><span>Computer vision</span><b>✳</b><span>Creative problem solving</span><b>✳</b>
+      </div>
+      <div class="ticker-group" aria-hidden="true">
+        <span>Python</span><b>✳</b><span>Java</span><b>✳</b><span>Web development</span><b>✳</b><span>Computer vision</span><b>✳</b><span>Creative problem solving</span><b>✳</b>
+      </div>
+    </div>
+  </div>
 
-        <section id="projects">
-            <h2>My Project</h2>
-            <div class="project-card">
-                <h3>Face Recognition Attendance System</h3>
-                <p>
-                    A project designed to automate attendance using
-                    face recognition. It uses computer vision to identify
-                    registered faces and record attendance, reducing
-                    the need for manual attendance entry.
-                </p>
-                <p class="tech">
-                    Technologies: Python, OpenCV, face recognition
-                </p>
-            </div>
-        </section>
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <aside class="about-aside reveal">
+        <div class="aside-mark">AR<span class="lime">.</span></div>
+        <p class="muted" style="margin-top:12px;font-size:.83rem">Aspiring software developer. Curious by nature.</p>
+        <div class="aside-rule"></div>
+        <div class="aside-line"><span>FOCUS</span><span>Software development</span></div>
+        <div class="aside-line"><span>LANGUAGES</span><span>Python / Java</span></div>
+        <div class="aside-line"><span>WEB</span><span>HTML / CSS</span></div>
+        <div class="aside-line"><span>PHILOSOPHY</span><span>Build to learn</span></div>
+      </aside>
 
-        <section id="contact" class="contact">
-            <h2>Contact Me</h2>
-            <p>
-                Thanks for visiting my portfolio! You can add your
-                professional email or LinkedIn profile here later.
-            </p>
-            <a class="button" href="#about">Back to About Me</a>
-        </section>
-    </main>
+      <div class="about-copy reveal">
+        <div class="section-id">01 / Behind the pixels</div>
+        <h3>I don't just want to use technology. I want to understand how it works.</h3>
+        <p>
+          I'm <strong>Arunkumar R</strong>, an aspiring developer with an interest
+          in programming, web experiences, and technology that solves real problems.
+        </p>
+        <p>
+          Working on a <strong>Face Recognition Attendance System</strong> introduced
+          me to the possibilities of computer vision and automation. It also reminded
+          me that every useful product starts with questions, experiments, and plenty
+          of learning along the way.
+        </p>
+        <p>
+          I'm growing my skills step by step. My goal is to become better at turning
+          a problem into a plan, a plan into working software, and working software
+          into something genuinely useful.
+        </p>
+        <div class="values">
+          <div class="value"><b>01 / CURIOSITY</b><strong>Ask why.</strong><small>Understand the details.</small></div>
+          <div class="value"><b>02 / PRACTICE</b><strong>Try things.</strong><small>Learn through making.</small></div>
+          <div class="value"><b>03 / PROGRESS</b><strong>Keep going.</strong><small>Improve every iteration.</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2026 Arunkumar R | Personal Portfolio</p>
-    </footer>
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-top reveal">
+        <div><div class="section-id">02 / The toolkit</div><h2>My current<br>building blocks<span class="lime">.</span></h2></div>
+        <p>Technologies I'm learning and using to develop my programming foundations and explore real-world software projects.</p>
+      </div>
 
+      <div class="skill-grid">
+        <article class="skill tilt reveal"><div class="skill-num mono">TOOL / 001</div><div class="skill-logo">Py.</div><h3>Python</h3><p>Programming fundamentals and project logic.</p></article>
+        <article class="skill tilt reveal"><div class="skill-num mono">TOOL / 002</div><div class="skill-logo">J.</div><h3>Java</h3><p>Problem-solving and object-oriented foundations.</p></article>
+        <article class="skill tilt reveal"><div class="skill-num mono">TOOL / 003</div><div class="skill-logo">&lt;/&gt;</div><h3>HTML</h3><p>Structuring content and digital experiences.</p></article>
+        <article class="skill tilt reveal"><div class="skill-num mono">TOOL / 004</div><div class="skill-logo">#</div><h3>CSS</h3><p>Responsive layouts and visual design.</p></article>
+      </div>
+
+      <div class="skill-tags reveal">
+        <span class="tag">COMPUTER VISION</span><span class="tag">WEB DESIGN</span><span class="tag">PROBLEM SOLVING</span><span class="tag">CONTINUOUS LEARNING</span>
+      </div>
+
+      <div class="terminal reveal">
+        <div class="terminal-head"><i></i><i></i><i></i><span class="terminal-title">arunkumar@learning-lab — session.log</span></div>
+        <div class="terminal-body">
+          <div><span class="prompt">ar@portfolio:~$</span> whoami</div>
+          <div class="answer">An aspiring developer who enjoys learning by building.</div>
+          <div><span class="prompt">ar@portfolio:~$</span> current_strategy</div>
+          <div class="answer">Understand → Experiment → Build → Improve <span class="caret"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-top reveal">
+        <div><div class="section-id">03 / Selected work</div><h2>Ideas, meet<br>implementation<span class="lime">.</span></h2></div>
+        <p>A project exploring how programming and computer vision can work together to simplify a familiar everyday task.</p>
+      </div>
+
+      <article class="project reveal">
+        <div class="project-art">
+          <div class="face-ui">
+            <div class="face-ui-head"><span>VISION MODULE / 01</span><span>● SIMULATED UI</span></div>
+            <div class="face-scan"><div class="face-outline"></div><div class="scan-beam"></div></div>
+            <div class="face-foot"><span>FACE RECOGNITION</span><b>CONCEPT MODE</b></div>
+          </div>
+        </div>
+        <div class="project-copy">
+          <div class="project-overline"><span>Featured project</span><span>PROJECT_001</span></div>
+          <h3>Face Recognition Attendance System</h3>
+          <p>
+            A system designed to explore attendance automation using face recognition.
+            The idea is to identify registered faces and record attendance, helping
+            reduce reliance on manual entry.
+          </p>
+          <div class="project-facts">
+            <div><small>CORE IDEA</small><strong>Automated attendance</strong></div>
+            <div><small>TECHNICAL FOCUS</small><strong>Computer vision</strong></div>
+          </div>
+          <div class="skill-tags"><span class="tag">PYTHON</span><span class="tag">OPENCV</span><span class="tag">FACE RECOGNITION</span></div>
+          <p class="project-note">The animated scanner is a decorative concept, not a live recognition result.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-top reveal">
+        <div><div class="section-id">04 / The process</div><h2>Progress has<br>a pattern<span class="lime">.</span></h2></div>
+        <p>My approach to learning software development: stay curious, make the effort, and treat every challenge as a chance to improve.</p>
+      </div>
+      <div class="steps">
+        <article class="step reveal"><div class="step-number">PHASE / ONE</div><h3>Understand the challenge</h3><p>Break a problem into smaller parts and understand what the solution should actually do.</p></article>
+        <article class="step reveal"><div class="step-number">PHASE / TWO</div><h3>Experiment with ideas</h3><p>Learn the concepts, write code, test assumptions, and discover what works.</p></article>
+        <article class="step reveal"><div class="step-number">PHASE / THREE</div><h3>Refine the result</h3><p>Review mistakes, improve the implementation, and keep building on what I learn.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="contact-panel reveal">
+        <div class="section-id">05 / Your turn</div>
+        <h2>Let's make something that matters<span class="lime">.</span></h2>
+        <p>
+          Thanks for exploring my little corner of the internet. I'm learning,
+          building, and looking forward to what comes next. Great ideas often
+          begin with a simple conversation.
+        </p>
+        <a href="#home" class="btn btn-primary">Take me back up <span class="arrow">↑</span></a>
+        <span class="contact-small">NEXT STEP: ADD YOUR PROFESSIONAL CONTACT LINKS</span>
+        <div class="contact-decoration" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <a href="#home" class="footer-brand">AR<span>®</span> / DIGITAL PLAYGROUND</a>
+    <span class="footer-note">© <span id="year"></span> ARUNKUMAR R — BUILT WITH CURIOSITY.</span>
+    <a class="back-top" href="#home">BACK TO TOP ↑</a>
+  </div>
+</footer>
+
+<script>
+/* Respect visitors who prefer reduced motion */
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Reading progress */
+const progress = document.getElementById("progress");
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (max > 0 ? window.scrollY / max * 100 : 0) + "%";
+}
+window.addEventListener("scroll", updateProgress, { passive:true });
+updateProgress();
+
+/* Mobile menu */
+const menu = document.getElementById("menu");
+const links = document.getElementById("links");
+menu.addEventListener("click", () => {
+  const open = links.classList.toggle("open");
+  menu.textContent = open ? "✕" : "☰";
+  menu.setAttribute("aria-expanded", String(open));
+  menu.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+});
+links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  links.classList.remove("open");
+  menu.textContent = "☰";
+  menu.setAttribute("aria-expanded", "false");
+}));
+
+/* Typewriter headline */
+const typed = document.getElementById("typed");
+const words = ["CREATE", "EXPLORE", "IMAGINE", "BUILD"];
+let wordIndex = 0, charIndex = words[0].length, deleting = true;
+function typeLoop() {
+  if (reducedMotion) return;
+  const word = words[wordIndex];
+  if (deleting) {
+    charIndex--;
+    typed.textContent = word.slice(0, Math.max(0, charIndex));
+    if (charIndex <= 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      setTimeout(typeLoop, 350);
+      return;
+    }
+    setTimeout(typeLoop, 65);
+  } else {
+    const next = words[wordIndex];
+    charIndex++;
+    typed.textContent = next.slice(0, charIndex);
+    if (charIndex >= next.length) {
+      deleting = true;
+      setTimeout(typeLoop, 1450);
+      return;
+    }
+    setTimeout(typeLoop, 105);
+  }
+}
+if (!reducedMotion) setTimeout(typeLoop, 1300);
+
+/* Reveal content as it enters the viewport */
+const revealItems = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window && !reducedMotion) {
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12 });
+  revealItems.forEach(el => observer.observe(el));
+} else {
+  revealItems.forEach(el => el.classList.add("show"));
+}
+
+/* Subtle 3D tilt on desktop */
+const finePointer = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+if (finePointer && !reducedMotion) {
+  document.querySelectorAll(".tilt").forEach(card => {
+    card.addEventListener("mousemove", event => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      card.style.transform = `perspective(700px) rotateX(${(0.5-y)*7}deg) rotateY(${(x-0.5)*7}deg) translateY(-4px)`;
+    });
+    card.addEventListener("mouseleave", () => card.style.transform = "");
+  });
+}
+
+/* Interactive AR centerpiece */
+const art = document.getElementById("art");
+const core = document.getElementById("core");
+if (finePointer && !reducedMotion) {
+  art.addEventListener("mousemove", event => {
+    const r = art.getBoundingClientRect();
+    const x = (event.clientX-r.left)/r.width-.5;
+    const y = (event.clientY-r.top)/r.height-.5;
+    core.style.transform = `rotateY(${x*14}deg) rotateX(${-y*14}deg)`;
+  });
+  art.addEventListener("mouseleave", () => core.style.transform = "");
+}
+
+/* Custom cursor for mouse users */
+if (finePointer && !reducedMotion) {
+  const dot = document.getElementById("cursorDot");
+  const ring = document.getElementById("cursorRing");
+  let mx = -100, my = -100, rx = -100, ry = -100;
+  document.body.classList.add("cursor-ready");
+  window.addEventListener("mousemove", e => { mx=e.clientX; my=e.clientY; });
+  function cursorFrame() {
+    rx += (mx-rx)*.18;
+    ry += (my-ry)*.18;
+    dot.style.transform = `translate(${mx-3}px,${my-3}px)`;
+    ring.style.transform = `translate(${rx-17}px,${ry-17}px)`;
+    requestAnimationFrame(cursorFrame);
+  }
+  cursorFrame();
+  document.querySelectorAll("a,button,.skill").forEach(el => {
+    el.addEventListener("mouseenter", () => ring.classList.add("hovering"));
+    el.addEventListener("mouseleave", () => ring.classList.remove("hovering"));
+  });
+}
+
+/* Lightweight ambient particle network */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particles = [], width = 0, height = 0, frame = 0;
+const pointer = { x:-1000, y:-1000 };
+function resizeCanvas() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width*dpr;
+  canvas.height = height*dpr;
+  canvas.style.width = width+"px";
+  canvas.style.height = height+"px";
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  const count = Math.min(75, Math.max(25, Math.floor(width/18)));
+  particles = Array.from({length:count}, () => ({
+    x:Math.random()*width, y:Math.random()*height,
+    vx:(Math.random()-.5)*.3, vy:(Math.random()-.5)*.3,
+    r:Math.random()*1.5+.5
+  }));
+}
+function drawParticles() {
+  ctx.clearRect(0,0,width,height);
+  for (let i=0;i<particles.length;i++) {
+    const p=particles[i];
+    if (!reducedMotion) {
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0||p.x>width)p.vx*=-1;
+      if(p.y<0||p.y>height)p.vy*=-1;
+    }
+    const dx=pointer.x-p.x, dy=pointer.y-p.y;
+    const dist=Math.hypot(dx,dy);
+    if(dist<125) {
+      p.x-=dx*.0007;
+      p.y-=dy*.0007;
+    }
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(202,255,89,.48)";
+    ctx.fill();
+    for(let j=i+1;j<particles.length;j++) {
+      const q=particles[j], d=Math.hypot(p.x-q.x,p.y-q.y);
+      if(d<105) {
+        ctx.beginPath();
+        ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);
+        ctx.strokeStyle=`rgba(202,255,89,${(1-d/105)*.13})`;
+        ctx.lineWidth=.7;ctx.stroke();
+      }
+    }
+  }
+  if (!reducedMotion) requestAnimationFrame(drawParticles);
+}
+window.addEventListener("resize", resizeCanvas);
+window.addEventListener("mousemove", e => { pointer.x=e.clientX;pointer.y=e.clientY; });
+window.addEventListener("mouseout", e => {
+  if (!e.relatedTarget) { pointer.x=-1000;pointer.y=-1000; }
+});
+resizeCanvas();
+drawParticles();
+
+/* Dynamic footer year */
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
